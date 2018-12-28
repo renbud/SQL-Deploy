@@ -39,13 +39,13 @@ b. Logs the he process in a table called *deploy.Feature* in the database
 #### Removal scripts
 You may want to remove a feature from the target database. SQL-Deploy allows you to do this. It runs the scripts in the "Remove" subfolder under the Deployment Folder, and then updates the deploy.Feature table to mark the feature as *Removed*.
 The following command removes the *2018\TestDeploy* feature:
-> SQL-Deploy.ps1 -EnvName *dev* -DeploymentRoot *I:\SQLDeployments* -DeploymentFolder *2018\TestDeploy*
+> SQL-Deploy.ps1 -EnvName *dev* -DeploymentRoot *I:\SQLDeployments* -DeploymentFolder *2018\TestDeploy* **-Remove**
 * SQL-Deploy requires the "Remove" subfolder to exist and contain  SQL scripts.
 * SQL-Deploy does not currently require the feature to be deployed to allow its removal.
   
 
 ## Configuring an Environment
-* It is not necessary to supply a server name, database name, user name and password to SQL-Deploy if the envoironment has alsready been configured.
+* It is not necessary to supply a server name, database name, user name and password to SQL-Deploy if the environment has already been configured.
 * Environments are kept in in %APPDATA%\Sql-Deploy\config.json
 * The environment can be created or edited by running Sql-Config.ps1.
 > SQL-Config.ps1 -EnvName dev -S MyTargetDevServer -d MyTargetDevDatabase -U DeploymentUser -P MySillyPassword
