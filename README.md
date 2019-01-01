@@ -15,8 +15,8 @@ A typical command is:
 > SQL-Deploy.ps1 -EnvName *dev* -DeploymentRoot *I:\SQLDeployments* -DeploymentFolder *2018\TestDeploy*
 
 This
-a. Deploys the SQL scripts in I:\SQLDeployments\2018\TestDeploy to the server configured in the environment called "*dev*".
-b. Logs the he process in a table called *deploy.Feature* in the database
+* a) Deploys the SQL scripts in I:\SQLDeployments\2018\TestDeploy to the server configured in the environment called "*dev*".
+* b) Logs the process in a table called *deploy.Feature* in the database
 
 ### Detail
 #### Executing
@@ -33,7 +33,7 @@ b. Logs the he process in a table called *deploy.Feature* in the database
 * SQL-Deploy uses a hashing mechanism to track changes and avoid running the same deployment twice
 * A cryptographic hash is calculated over the contents of the SQL files in the deployment folder.
 * The hash is stored in the deploy.Feature table on the target database - keyed by the deployment folder name (a.k.a. *Feature*)
-* If the hash of the deployment folder is the same as the hash stored in the database and the status of the deployment in the database is *Deployed*, then SQL-Deploy exits with a message saying the deployment is already done.
+* If the hash of the contents of the SQL files in the deployment folder is the same as the hash stored in the database, and the status of the deployment in the database is *Deployed*, then SQL-Deploy exits with a message saying the deployment is already done.
 * If the contents of any SQL script in the folder is changed, the hash changes and SQL-Deploy will run all the scripts when it is executed.
 
 #### Removal scripts
