@@ -164,7 +164,7 @@ function Set-ConfigValues{
                 }
 
                 if (![String]::IsNullOrEmpty($P)) {
-                    $ssPass = ConvertTo-SecureString -String $P
+                    $ssPass = ConvertTo-SecureString -String $P -AsPlainText -Force
                     $encryptedPassword = ConvertFrom-SecureString $ssPass
                     $ht1.password = $encryptedPassword
                 }
