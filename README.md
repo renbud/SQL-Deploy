@@ -12,8 +12,9 @@ Dependencies:
 ## Behaviour
 ### Summary
 A typical command is:
-> SQL-Deploy.ps1 -EnvName *dev* -DeploymentRoot *I:\SQLDeployments* -DeploymentFolder *2018\TestDeploy*
-
+>>
+>> PS > .\\SQL-Deploy.ps1 -EnvName *dev* -DeploymentRoot *I:\SQLDeployments* -DeploymentFolder *2018\TestDeploy*
+>>
 This
 * a) Deploys the SQL scripts in I:\SQLDeployments\2018\TestDeploy to the server configured in the environment called "*dev*".
 * b) Logs the process in a table called *deploy.Feature* in the database
@@ -39,7 +40,9 @@ This
 #### Removal scripts
 You may want to remove a feature from the target database. SQL-Deploy allows you to do this. It runs the scripts in the "Remove" subfolder under the Deployment Folder, and then updates the deploy.Feature table to mark the feature as *Removed*.
 The following command removes the *2018\TestDeploy* feature:
-> SQL-Deploy.ps1 -EnvName *dev* -DeploymentRoot *I:\SQLDeployments* -DeploymentFolder *2018\TestDeploy* **-Remove**
+>>
+>> PS > .\\SQL-Deploy.ps1 -EnvName *dev* -DeploymentRoot *I:\SQLDeployments* -DeploymentFolder *2018\TestDeploy* **-Remove**
+>>
 * SQL-Deploy requires the "Remove" subfolder to exist and contain  SQL scripts.
 * SQL-Deploy does not currently require the feature to be deployed to allow its removal.
   
@@ -48,8 +51,12 @@ The following command removes the *2018\TestDeploy* feature:
 * It is not necessary to supply a server name, database name, user name and password to SQL-Deploy if the environment has already been configured.
 * Environments are kept in in %APPDATA%\Sql-Deploy\config.json
 * The environment can be created or edited by running Sql-Config.ps1.
-> SQL-Config.ps1 -EnvName dev -S MyTargetDevServer -d MyTargetDevDatabase -U DeploymentUser -P MySillyPassword
+>>
+>> PS > .\\SQL-Config.ps1 -EnvName dev -S MyTargetDevServer -d MyTargetDevDatabase -U DeploymentUser -P MySillyPassword
+>>
 * This script will prompt for values if they are not provided on the command line.
 * The password is stored securely encrypted using the machine key and can only be accessed by the same user that stored it on the same machine that stored it.
-* SQL-Deploy can be run without pre-configuring an environment by providing the same parameters directly. For example the following can be used withou configuring the *dev* environment. This could be used by a tool such as Octopus Deploy which has it's own concept of environments.
-> SQL-Deploy.ps1 -EnvName *dev* -DeploymentRoot *I:\SQLDeployments* -DeploymentFolder *2018\TestDeploy*  -S MyTargetDevServer -d MyTargetDevDatabase -U DeploymentUser -P MySillyPassword
+* SQL-Deploy can be run without pre-configuring an environment by providing the same parameters directly. For example the following can be used without configuring the *dev* environment. This could be used by a tool such as Octopus Deploy which has it's own concept of environments.
+>>
+>> PS > .\SQL-Deploy.ps1 -EnvName *dev* -DeploymentRoot *I:\SQLDeployments* -DeploymentFolder *2018\TestDeploy*  -S MyTargetDevServer -d MyTargetDevDatabase -U DeploymentUser -P MySillyPassword
+>>
