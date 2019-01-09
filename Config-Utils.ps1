@@ -150,10 +150,13 @@ function Set-ConfigValues{
             $ht1.E = $E
         }
         else {
-            $ret = Read-Host -Prompt "Integrated Security <True or False> ($($ht1.E))"
-            if ($ret -ne "") {$ht1.E =  [System.Convert]::ToBoolean($ret)}
-            else {$ht1.E =  [System.Convert]::ToBoolean($ht1.E)}
+            if ([String]::IsNullOrEmpty($U) -and [String]::IsNullOrEmpty($P)) {
+                $ret = Read-Host -Prompt "Integrated Security <True or False> ($($ht1.E))"
+                if ($ret -ne "") {$ht1.E =  [System.Convert]::ToBoolean($ret)}
+                else {$ht1.E =  [System.Convert]::ToBoolean($ht1.E)}
+            }
         }
+
         if (-not $ht1.E) {
                 if (![String]::IsNullOrEmpty($U)) {
                     $ht1.U = $U
